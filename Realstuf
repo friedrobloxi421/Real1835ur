@@ -119,6 +119,20 @@ local Button = MainTab:CreateButton({
    end,
 })
 
+local Button = MainTab:CreateButton({
+   Name = "AFSX Summon",
+   Callback = function()
+   local args = {
+    [1] = "Roll",
+    [2] = "Champion Capsule",
+    [3] = 99
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Champions/RemoteEvent"):FireServer(unpack(args))
+
+   end,
+})
+
 local Slider = MainTab:CreateSlider({
    Name = "WalkSpeed Slider",
    Range = {1, 350},
