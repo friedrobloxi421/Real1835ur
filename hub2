@@ -1,0 +1,101 @@
+-- Get the player
+local player = game.Players.LocalPlayer
+
+-- Create a ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player.PlayerGui
+
+-- Create a Frame within the ScreenGui
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.3, 0, 0.3, 0)
+frame.Position = UDim2.new(0.35, 0, 0.35, 0)
+frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Set to black
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Parent = screenGui
+
+
+-- Create a ScrollingFrame within the Frame
+local scrollingFrame = Instance.new("ScrollingFrame")
+scrollingFrame.Size = UDim2.new(1, 0, 1, 0)
+scrollingFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+scrollingFrame.BorderSizePixel = 0
+scrollingFrame.Parent = frame
+
+-- Create a close button (x) within the ScrollingFrame
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 20, 0, 20)
+closeButton.Position = UDim2.new(1, -25, 0, 5)
+closeButton.BackgroundColor3 = Color3.new(0, 0, 0)
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.new(1, 1, 1)
+closeButton.Parent = scrollingFrame
+
+-- Function to close the ScreenGui
+local function closeGui()
+    screenGui:Destroy()
+end
+
+-- Connect the close button to the closeGui function
+closeButton.MouseButton1Click:Connect(closeGui)
+
+-- Create an array of button names and their respective functions
+local buttons = {
+    {"Admin", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() end},
+    {"AFSX", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnynwy/games/main/AnimeFightingX"))() end},
+    {"Blox Fruits", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))() end},
+    {"Drag project", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))() end},
+    {"Rainbow Friends", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))() end},
+    {"Anti AFK", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/friedrobloxi421/Real1835ur/main/antiafk"))() end}, -- New button
+}
+
+-- Create the buttons dynamically
+local buttonHeight = 30
+local spacing = 5
+for i, buttonData in ipairs(buttons) do
+    local buttonText = buttonData[1]
+    local buttonFunction = buttonData[2]
+
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(1, 0, 0, buttonHeight)
+    button.Position = UDim2.new(0, 0, 0, (buttonHeight + spacing) * (i - 1) + 30)
+    button.BackgroundColor3 = Color3.new(0, 0.5, 1)
+    button.Text = buttonText
+    button.TextColor3 = Color3.new(0, 0, 0)
+    button.Parent = scrollingFrame
+
+    button.MouseButton1Click:Connect(buttonFunction)
+end
+
+-- Function to enable dragging
+local dragging
+local dragStart
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+    end
+end)
+
+frame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(
+            frame.Position.X.Scale,
+            frame.Position.X.Offset + delta.X,
+            frame.Position.Y.Scale,
+            frame.Position.Y.Offset + delta.Y
+        )
+        dragStart = input.Position
+    end
+end)
+
+
+
+
