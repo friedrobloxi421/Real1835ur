@@ -94,3 +94,11 @@ titleLabel.TextColor3 = Color3.new(1, 1, 1) -- White
 titleLabel.Font = Enum.Font.SourceSansBold
 titleLabel.TextSize = 20
 titleLabel.Parent = scrollingFrame
+
+OrionLib:MakeNotification({
+    Name = "Loaded!",
+    Content = "The script has loaded!",
+    Image = "rbxassetid://4483345998",
+    Time = 3
+})
+OrionLib:Init()
