@@ -58,7 +58,7 @@ local buttons = {
     {"Drag project", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))() end},
     {"Rainbow Friends", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))() end},
     {"Esp", function() loadstring(game:HttpGet(('https://raw.githubusercontent.com/zachisfunny/esp-unversal/main/script'),true))() end},
-    {"Close Gui", function() game.Players.LocalPlayer.PlayerGui:FindFirstChild("ScreenGui"):Destroy() end, Color3.new(1, 0, 0)},  -- Red color
+    {"Terminate Gui", function() game.Players.LocalPlayer.PlayerGui:FindFirstChild("ScreenGui"):Destroy() end, Color3.new(1, 0, 0)},  -- Red color
 }
 
 -- Create the buttons dynamically
@@ -89,7 +89,7 @@ local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0, 30)
 titleLabel.Position = UDim2.new(0, 0, 0, 0) -- Move to the very top
 titleLabel.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2) -- Dark gray
-titleLabel.Text = "Script Hub"
+titleLabel.Text = "Script Hub `]` To Hide the Gui"
 titleLabel.TextColor3 = Color3.new(1, 1, 1) -- White
 titleLabel.Font = Enum.Font.SourceSansBold
 titleLabel.TextSize = 20
@@ -104,3 +104,15 @@ OrionLib:MakeNotification({
     Time = 3
 })
 OrionLib:Init()
+
+local function toggleGuiVisibility()
+    frame.Visible = not frame.Visible
+end
+
+-- Bind the "]" key to toggle the GUI visibility
+local userinputService = game:GetService("UserInputService")
+userinputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if not gameProcessedEvent and input.KeyCode == Enum.KeyCode.RightBracket then
+        toggleGuiVisibility()
+    end
+end)
