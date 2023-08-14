@@ -46,7 +46,6 @@ local buttons = {
     {"Blox Fruits", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))() end},
     {"Drag project", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))() end},
     {"Rainbow Friends", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))() end},
-    {"Anti AFK", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/friedrobloxi421/Real1835ur/main/antiafk"))() end}, -- New button
     {"Esp", function() loadstring(game:HttpGet(('https://raw.githubusercontent.com/zachisfunny/esp-unversal/main/script'),true))() end},
 }
 
