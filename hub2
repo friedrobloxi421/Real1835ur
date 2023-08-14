@@ -95,6 +95,8 @@ titleLabel.Font = Enum.Font.SourceSansBold
 titleLabel.TextSize = 20
 titleLabel.Parent = scrollingFrame
 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+ 
 OrionLib:MakeNotification({
     Name = "Loaded!",
     Content = "The script has loaded!",
