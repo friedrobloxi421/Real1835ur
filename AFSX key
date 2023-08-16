@@ -1,0 +1,82 @@
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Name = "TestGui"
+gui.Parent = player.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 260)
+frame.Position = UDim2.new(0.5, -150, 0.5, -130)
+frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.BackgroundColor3 = Color3.fromRGB(64, 64, 64) -- Dark gray
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local dragging
+local dragStart
+local startPos
+
+local function updateDragPosition(input)
+    local delta = input.Position - dragStart
+    frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = frame.Position
+    end
+end)
+
+frame.InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        updateDragPosition(input)
+    end
+end)
+
+frame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+local closeButton = Instance.new("TextButton")
+closeButton.Text = "X"
+closeButton.TextSize = 20
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -30, 0, 0)
+closeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black
+closeButton.TextColor3 = Color3.new(1, 1, 1) -- White
+closeButton.BorderSizePixel = 0
+closeButton.Parent = frame
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Text = "Key"
+titleLabel.TextSize = 20
+titleLabel.Size = UDim2.new(1, 0, 0, 30)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundColor3 = Color3.new(0, 0, 0) -- black
+titleLabel.BorderSizePixel = 0
+titleLabel.TextColor3 = Color3.new(1, 1, 1) -- white
+titleLabel.Parent = frame
+
+local textBox = Instance.new("TextBox")
+textBox.Size = UDim2.new(0.8, 0, 0.6, 0)
+textBox.Position = UDim2.new(0.1, 0, 0.15, 0)
+textBox.BackgroundTransparency = 0.7
+textBox.BackgroundColor3 = Color3.new(1, 1, 1) -- White
+textBox.BorderSizePixel = 0
+textBox.ClearTextOnFocus = false  -- Text won't be cleared on focus
+textBox.TextEditable = false       -- Player won't be able to edit the text
+textBox.Parent = frame
+
+closeButton.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+-- Fetch and display content from the Pastebin link
+local pastebinLink = "https://pastebin.com/raw/k0WVv8rC"
+local content = game:HttpGetAsync(pastebinLink)
+textBox.Text = content
+
+gui.Parent = player.PlayerGui
