@@ -117,3 +117,40 @@ userinputService.InputBegan:Connect(function(input, gameProcessedEvent)
         toggleGuiVisibility()
     end
 end)
+
+-- ... (previous code)
+
+-- Create the buttons dynamically
+local buttonHeight = 30
+local spacing = 5
+
+for i, buttonData in ipairs(buttons) do
+    -- ... (existing button creation code)
+end
+
+-- ... (previous code)
+
+-- Create a TextBox for displaying content
+local contentTextBox = Instance.new("TextBox")
+contentTextBox.Size = UDim2.new(1, 0, 0, buttonHeight) -- Match button height
+contentTextBox.Position = UDim2.new(0, 0, 0.54, 0) -- Positioned at 75% from the top
+contentTextBox.BackgroundTransparency = 0
+contentTextBox.BackgroundColor3 = Color3.new(0, 0.5, 1) -- Electric blue
+contentTextBox.BorderSizePixel = 0
+contentTextBox.TextEditable = false
+contentTextBox.Selectable = false -- Prevent the TextBox from being selected when clicked
+contentTextBox.Parent = scrollingFrame
+
+local pastebinLink = "https://pastebin.com/raw/k0WVv8rC"
+local content = game:HttpGetAsync(pastebinLink)
+contentTextBox.Text = content
+
+local storedContent = content -- Store the initial content
+
+contentTextBox.Focused:Connect(function()
+    contentTextBox.Text = storedContent -- Set the stored content when the TextBox is focused
+end)
+
+-- ... (rest of the code)
+
+
