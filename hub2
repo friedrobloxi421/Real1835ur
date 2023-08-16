@@ -153,4 +153,41 @@ end)
 
 -- ... (rest of the code)
 
+-- ... (previous code)
 
+-- Create a TextBox for displaying content
+local contentTextBox = Instance.new("TextBox")
+contentTextBox.Size = UDim2.new(1, 0, 0, buttonHeight) -- Match button height
+contentTextBox.Position = UDim2.new(0, 0, 0.54, 0) -- Positioned at 75% from the top
+contentTextBox.BackgroundTransparency = 0
+contentTextBox.BackgroundColor3 = Color3.new(0, 0.5, 1) -- Electric blue
+contentTextBox.BorderSizePixel = 0
+contentTextBox.TextEditable = false
+contentTextBox.Selectable = false -- Prevent the TextBox from being selected when clicked
+contentTextBox.Parent = scrollingFrame
+
+local pastebinLink = "https://pastebin.com/raw/k0WVv8rC"
+local content = game:HttpGetAsync(pastebinLink)
+contentTextBox.Text = content
+
+local storedContent = content -- Store the initial content
+
+contentTextBox.Focused:Connect(function()
+    contentTextBox.Text = storedContent -- Set the stored content when the TextBox is focused
+end)
+
+-- Create a TextLabel for displaying additional information
+local infoLabel = Instance.new("TextLabel")
+infoLabel.Size = UDim2.new(1, 0, 0, buttonHeight) -- Match button height
+infoLabel.Position = UDim2.new(0, 0, 0.59, 0) -- Positioned below the text box
+infoLabel.BackgroundTransparency = 0
+infoLabel.BackgroundColor3 = Color3.new(0, 0.5, 1) -- Dark gray
+infoLabel.BorderSizePixel = 0
+infoLabel.Text = "^AFSX key^"
+infoLabel.TextColor3 = Color3.new(0, 0, 0) -- White text color
+infoLabel.Font = Enum.Font.SourceSansBold
+infoLabel.TextSize = 14
+infoLabel.TextWrapped = true -- Allow text to wrap if it's too long
+infoLabel.Parent = scrollingFrame
+
+-- ... (rest of the code)
