@@ -52,12 +52,12 @@ scrollingFrame.Parent = frame
 
 -- Create an array of button names and their respective functions
 local buttons = {
-    {"Admin", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() end},
+    {"Aimbot/Esp", function() loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-AirHub-7127"))() end},
     {"AFSX", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnynwy/games/main/AnimeFightingX"))() end},
     {"Blox Fruits", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))() end},
     {"Drag project (Anti Afk)", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))() end},
     {"Rainbow Friends", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))() end},
-    {"Esp", function() loadstring(game:HttpGet(('https://raw.githubusercontent.com/zachisfunny/esp-unversal/main/script'),true))() end},
+    {"MVSD", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AsteriskCodes/Ranxware-V2-Restored/main/source.lua"))() end},
 	{"AFSX (Use webhook)", function() loadstring(game:HttpGet("https://scriptblox.com/raw/UPDATE-1-Anime-Fighting-Simulator-X-Best-Blo-Hub-Roblo-Script-AUTO-EVERYTHING-6910"))() end},
     {"Terminate Gui", function() game.Players.LocalPlayer.PlayerGui:FindFirstChild("ScreenGui"):Destroy() end, Color3.new(1, 0, 0)},  -- Red color
 }
