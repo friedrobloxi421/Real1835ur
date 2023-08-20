@@ -166,7 +166,7 @@ contentTextBox.TextEditable = false
 contentTextBox.Selectable = false -- Prevent the TextBox from being selected when clicked
 contentTextBox.Parent = scrollingFrame
 
-local pastebinLink = "https://pastebin.com/mPawwHY3"
+local pastebinLink = "https://pastebin.com/raw/mPawwHY3"
 local content = game:HttpGetAsync(pastebinLink)
 contentTextBox.Text = content
 
