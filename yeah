@@ -1,0 +1,7 @@
+local pastebinLink = "https://pastebin.com/raw/k0WVv8rC"
+local content = game:HttpGetAsync(pastebinLink)
+
+-- Copy the content to the clipboard
+setclipboard(content)
+
+print("Pastebin content copied to clipboard!")
