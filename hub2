@@ -1,120 +1,163 @@
--- Get the player
-local player = game.Players.LocalPlayer
-
--- Create a ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = player.PlayerGui
-
--- Create a Frame within the ScreenGui
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.3, 0, 0.3, 0)
-frame.Position = UDim2.new(0.35, 0, 0.35, 0)
-frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2) -- Set to black
-frame.BorderSizePixel = 0
-frame.Active = true
-frame.Parent = screenGui
-
--- Enable drag-and-drop functionality
-local dragging = false
-local dragStart
-frame.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = true
-        dragStart = input.Position
-    end
-end)
-
-frame.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = false
-    end
-end)
-
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-        local delta = input.Position - dragStart
-        frame.Position = UDim2.new(
-            frame.Position.X.Scale,
-            frame.Position.X.Offset + delta.X,
-            frame.Position.Y.Scale,
-            frame.Position.Y.Offset + delta.Y
-        )
-        dragStart = input.Position
-    end
-end)
-
--- Create a ScrollingFrame within the Frame
-local scrollingFrame = Instance.new("ScrollingFrame")
-scrollingFrame.Size = UDim2.new(1, 0, 1, 0)
-scrollingFrame.BackgroundColor3 = Color3.new(0, 0, 0)
-scrollingFrame.BorderSizePixel = 0
-scrollingFrame.Parent = frame
-
--- Create an array of button names and their respective functions
-local buttons = {
-    {"Aimbot/Esp", function() loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-AirHub-7127"))() end},
-    {"AFSX", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnynwy/games/main/AnimeFightingX"))() end},
-    {"Blox Fruits", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))() end},
-    {"Drag project (Anti Afk)", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))() end},
-    {"Rainbow Friends", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))() end},
-    {"MVSD", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AsteriskCodes/Ranxware-V2-Restored/main/source.lua"))() end},
-	{"Webhook AFSX", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/rosel4k/scripts/main/afsx-webhook.lua"))() end},
-	{"Sky Hub AFSX", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/SKOIXLL/RIVERHUB-SKYHUB/main/WL.lua'))(); end},
-	{"Webhook Copy", function() setclipboard("https://discord.com/api/webhooks/1140837890369261671/yfYp6uvOd9T07K5g_F6-fT3d6ZvlXMcT8ArnzcvAwbanr7sPKumF83sIxMq_IxGP8Ykc") end},
-    {"AFSX Key Copy", function() setclipboard(game:HttpGet("https://pastebin.com/raw/k0WVv8rC")) end},
-    {"Terminate Gui", function() game.Players.LocalPlayer.PlayerGui:FindFirstChild("ScreenGui"):Destroy() end, Color3.new(1, 0, 0)},  -- Red color
-}
-
--- Create the buttons dynamically
-local buttonHeight = 30
-local spacing = 5
-for i, buttonData in ipairs(buttons) do
-    local buttonText = buttonData[1]
-    local buttonFunction = buttonData[2]
-    local buttonBackgroundColor = buttonData[3] or Color3.new(0, 0.5, 1)  -- Default color
-
-    local button = Instance.new("TextButton")
-    button.Size = UDim2.new(1, 0, 0, buttonHeight)
-    button.Position = UDim2.new(0, 0, 0, (buttonHeight + spacing) * (i - 1) + 30)
-    button.BackgroundColor3 = buttonBackgroundColor
-    button.Text = buttonText
-    button.TextColor3 = Color3.new(1, 1, 1)  -- White text color
-    button.Font = Enum.Font.SourceSansBold
-    button.TextSize = 14
-    button.Parent = scrollingFrame
-
-    button.MouseButton1Click:Connect(buttonFunction)
-end
-
--- Create a TextLabel for the title
-local titleLabel = Instance.new("TextLabel")
-titleLabel.Size = UDim2.new(1, 0, 0, 30)
-titleLabel.Position = UDim2.new(0, 0, 0, 0) -- Move to the very top
-titleLabel.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2) -- Dark gray
-titleLabel.Text = "Script Hub `]` To Hide the Gui"
-titleLabel.TextColor3 = Color3.new(1, 1, 1) -- White
-titleLabel.Font = Enum.Font.SourceSansBold
-titleLabel.TextSize = 20
-titleLabel.Parent = scrollingFrame
-
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
- 
-OrionLib:MakeNotification({
-    Name = "Loaded!",
-    Content = "The script has loaded!",
-    Image = "rbxassetid://4483345998",
-    Time = 3
+
+local Window = OrionLib:MakeWindow({Name = "Script Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "FriedHub"})
+
+local Tab = Window:MakeTab({
+	Name = "Scripts",
+	Icon = "nil",
+	PremiumOnly = false
 })
+
+Tab:AddButton({
+	Name = "Mumi Hub AFSX",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnynwy/games/main/AnimeFightingX"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Sky Hub AFSX",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/SKOIXLL/RIVERHUB-SKYHUB/main/WL.lua'))();
+  	end    
+})
+
+Tab:AddButton({
+	Name = "AFSX Stats (Will Close Gui)",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/rosel4k/scripts/main/afsx-webhook.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "MVSD",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/AsteriskCodes/Ranxware-V2-Restored/main/source.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "BloxFruits",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Rainbow Friends",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Aimbot/Esp",
+	Callback = function()
+      		loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-AirHub-7127"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Drag Project/Anti Afk",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Sirius",
+	Callback = function()
+      		loadstring(game:HttpGet('https://sirius.menu/script'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Anti Lag",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/insanedude59/MiscReleases/main/Roblox/UWPFPSBooster.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "DarkDex",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "infiniteyield",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Prison Life Admin",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/h17s3/TIGERADMIN/main/TIGERADMINSCRIPTFREE'),true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Simple Spy",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/get-return/SimpleSpy.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Eclipse Hub",
+	Callback = function()
+      		loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Eclipse-hub-5796"))()
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "nil",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Webhook Copy",
+	Callback = function()
+      		setclipboard("https://discord.com/api/webhooks/1140837890369261671/yfYp6uvOd9T07K5g_F6-fT3d6ZvlXMcT8ArnzcvAwbanr7sPKumF83sIxMq_IxGP8Ykc")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Mumi Hub Key Copy",
+	Callback = function()
+      		loadstring(game:HttpGet"https://raw.githubusercontent.com/friedrobloxi421/Real1835ur/main/yeah")()
+  	end    
+})
+
+Tab:AddSlider({
+	Name = "WalkSpeed",
+	Min = 16,
+	Max = 500,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Speed",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+	end    
+})
+
+Tab:AddSlider({
+	Name = "Jump Power",
+	Min = 50,
+	Max = 500,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Power",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+	end    
+})
+
 OrionLib:Init()
 
-local function toggleGuiVisibility()
-    frame.Visible = not frame.Visible
-end
-
--- Bind the "]" key to toggle the GUI visibility
-local userinputService = game:GetService("UserInputService")
-userinputService.InputBegan:Connect(function(input, gameProcessedEvent)
-    if not gameProcessedEvent and input.KeyCode == Enum.KeyCode.RightBracket then
-        toggleGuiVisibility()
-    end
-end)
