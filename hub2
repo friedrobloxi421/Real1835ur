@@ -1,163 +1,184 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local Window = OrionLib:MakeWindow({Name = "Script Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "FriedHub"})
-
-local Tab = Window:MakeTab({
-	Name = "Scripts",
-	Icon = "nil",
-	PremiumOnly = false
+local Window = Rayfield:CreateWindow({
+   Name = "Script Hub",
+   LoadingTitle = "Script Hub",
+   LoadingSubtitle = "by Fried",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = true, -- Create a custom folder for your hub/game
+      FileName = "realtalk"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
 })
 
-Tab:AddButton({
-	Name = "Mumi Hub AFSX",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnynwy/games/main/AnimeFightingX"))()
-  	end    
+local Tab = Window:CreateTab("Scripts", nil)
+
+local Section = Tab:CreateSection("AFSX")
+
+local Button = Tab:CreateButton({
+   Name = "Mumi Hub AFSX",
+   Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnynwy/games/main/AnimeFightingX"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Sky Hub AFSX",
-	Callback = function()
-      		loadstring(game:HttpGet('https://raw.githubusercontent.com/SKOIXLL/RIVERHUB-SKYHUB/main/WL.lua'))();
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Sky Hub AFSX",
+   Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/SKOIXLL/RIVERHUB-SKYHUB/main/WL.lua'))();
+   end,
 })
 
-Tab:AddButton({
-	Name = "AFSX Stats (Will Close Gui)",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/rosel4k/scripts/main/afsx-webhook.lua"))()
-  	end    
+local Section = Tab:CreateSection("Others")
+
+local Button = Tab:CreateButton({
+   Name = "MVSD",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AsteriskCodes/Ranxware-V2-Restored/main/source.lua"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "MVSD",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/AsteriskCodes/Ranxware-V2-Restored/main/source.lua"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "BloxFruits",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "BloxFruits",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/AllScript.lua"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Rainbow Friends",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Rainbow Friends",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/FrightenedHub/main/Loader.lua", true))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Aimbot/Esp",
+   Callback = function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-AirHub-7127"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Aimbot/Esp",
-	Callback = function()
-      		loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-AirHub-7127"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Drag Project/Anti Afk",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Drag Project/Anti Afk",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/drag%20project"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Sirius",
+   Callback = function()
+        loadstring(game:HttpGet('https://sirius.menu/script'))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Sirius",
-	Callback = function()
-      		loadstring(game:HttpGet('https://sirius.menu/script'))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Anti Lag",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/insanedude59/MiscReleases/main/Roblox/UWPFPSBooster.lua"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Anti Lag",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/insanedude59/MiscReleases/main/Roblox/UWPFPSBooster.lua"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Dark Dex",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "DarkDex",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "infiniteyield",
+   Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "infiniteyield",
-	Callback = function()
-      		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Prison Life",
+   Callback = function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/h17s3/TIGERADMIN/main/TIGERADMINSCRIPTFREE'),true))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Prison Life Admin",
-	Callback = function()
-      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/h17s3/TIGERADMIN/main/TIGERADMINSCRIPTFREE'),true))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Simple Spy",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/get-return/SimpleSpy.lua"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Simple Spy",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/get-return/SimpleSpy.lua"))()
-  	end    
+local Button = Tab:CreateButton({
+   Name = "Eclipse Hub",
+   Callback = function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Eclipse-hub-5796"))()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Eclipse Hub",
-	Callback = function()
-      		loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Eclipse-hub-5796"))()
-  	end    
+local Tab = Window:CreateTab("Misc", nil) -- Title, Image
+
+local Button = Tab:CreateButton({
+   Name = "Webhook copy",
+   Callback = function()
+        setclipboard("https://discord.com/api/webhooks/1140837890369261671/yfYp6uvOd9T07K5g_F6-fT3d6ZvlXMcT8ArnzcvAwbanr7sPKumF83sIxMq_IxGP8Ykc")
+   end,
 })
 
-local Tab = Window:MakeTab({
-	Name = "Misc",
-	Icon = "nil",
-	PremiumOnly = false
+local Button = Tab:CreateButton({
+   Name = "Mumi Hub Key",
+   Callback = function()
+        loadstring(game:HttpGet"https://raw.githubusercontent.com/friedrobloxi421/Real1835ur/main/yeah")()
+   end,
 })
 
-Tab:AddButton({
-	Name = "Webhook Copy",
-	Callback = function()
-      		setclipboard("https://discord.com/api/webhooks/1140837890369261671/yfYp6uvOd9T07K5g_F6-fT3d6ZvlXMcT8ArnzcvAwbanr7sPKumF83sIxMq_IxGP8Ykc")
-  	end    
+local Slider = Tab:CreateSlider({
+   Name = "Fps Cap",
+   Range = {30, 500},
+   Increment = 1,
+   Suffix = "Fps",
+   CurrentValue = 60,
+   Flag = "baconegg", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        setfpscap(Value)
+   end,
 })
 
-Tab:AddButton({
-	Name = "Mumi Hub Key Copy",
-	Callback = function()
-      		loadstring(game:HttpGet"https://raw.githubusercontent.com/friedrobloxi421/Real1835ur/main/yeah")()
-  	end    
+local Slider = Tab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 800},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "cheese2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+   end,
 })
 
-Tab:AddSlider({
-	Name = "WalkSpeed",
-	Min = 16,
-	Max = 500,
-	Default = 16,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Speed",
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
-	end    
+local Slider = Tab:CreateSlider({
+   Name = "Jump Power",
+   Range = {50, 800},
+   Increment = 10,
+   Suffix = "Power",
+   CurrentValue = 50,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value) 
+   end,
 })
-
-Tab:AddSlider({
-	Name = "Jump Power",
-	Min = 50,
-	Max = 500,
-	Default = 50,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Power",
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
-	end    
-})
-
-OrionLib:Init()
-
